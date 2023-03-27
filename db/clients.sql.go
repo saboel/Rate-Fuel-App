@@ -40,6 +40,45 @@ func (q *Queries) AddClient(ctx context.Context, arg AddClientParams) (Client, e
 	return i, err
 }
 
+const getClientByNameAndAddress = `-- name: GetClientByNameAndAddress :one
+SELECT client_id, client_name, address_client FROM clients WHERE client_name =$1 AND address_client= $2
+`
+
+type GetClientByNameAndAddressParams struct {
+	ClientName    string
+	AddressClient string
+}
+
+type GetClientByNameAndAddressRow struct {
+	ClientID      pgtype.UUID
+	ClientName    string
+	AddressClient string
+}
+
+func (q *Queries) GetClientByNameAndAddress(ctx context.Context, arg GetClientByNameAndAddressParams) (GetClientByNameAndAddressRow, error) {
+	row := q.db.QueryRowContext(ctx, getClientByNameAndAddress, arg.ClientName, arg.AddressClient)
+	var i GetClientByNameAndAddressRow
+	err := row.Scan(&i.ClientID, &i.ClientName, &i.AddressClient)
+	return i, err
+}
+
+const getClientInfo = `-- name: GetClientInfo :one
+SELECT client_id, address_client, client_name, client_city, client_state FROM clients WHERE client_id = $1
+`
+
+func (q *Queries) GetClientInfo(ctx context.Context, clientID pgtype.UUID) (Client, error) {
+	row := q.db.QueryRowContext(ctx, getClientInfo, clientID)
+	var i Client
+	err := row.Scan(
+		&i.ClientID,
+		&i.AddressClient,
+		&i.ClientName,
+		&i.ClientCity,
+		&i.ClientState,
+	)
+	return i, err
+}
+
 const getClient_id = `-- name: GetClient_id :one
  SELECT client_id FROM clients WHERE address_client = $1
 `

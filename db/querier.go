@@ -12,6 +12,8 @@ import (
 
 type Querier interface {
 	AddClient(ctx context.Context, arg AddClientParams) (Client, error)
+	GetClientByNameAndAddress(ctx context.Context, arg GetClientByNameAndAddressParams) (GetClientByNameAndAddressRow, error)
+	GetClientInfo(ctx context.Context, clientID pgtype.UUID) (Client, error)
 	GetClient_id(ctx context.Context, addressClient string) (pgtype.UUID, error)
 	GetFuelQuotes(ctx context.Context, clientID pgtype.UUID) ([]FuelHistory, error)
 	ListClients(ctx context.Context) ([]Client, error)
