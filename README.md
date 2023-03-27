@@ -51,6 +51,13 @@ go run main.go
 We are using sqlc to generate sql queries in go, to install sqlc:
 https://docs.sqlc.dev/en/latest/overview/install.html
 
+Then Open http://localhost:8080 with your browser to see the result.
+
+Login route can be accessed on http://localhost:8080/login/
+
+This endpoint can be edited in handlers/handler.go.
+
+
 
 
 
