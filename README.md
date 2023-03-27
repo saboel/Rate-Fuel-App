@@ -18,6 +18,8 @@ https://docs.docker.com/get-docker/
 
 I am also assuming you have golang properly installed on your machine, if not:
 https://go.dev/doc/install
+(Make sure you have it correctly installed by issuing:
+go version)
 
 Note: if you have a windows machine make sure you get the docker desktop version. 
 
@@ -56,6 +58,40 @@ Then Open http://localhost:8080 with your browser to see the result.
 Login route can be accessed on http://localhost:8080/login/
 
 This endpoint can be edited in handlers/handler.go.
+
+
+To check if the database is working you can issue this command: 
+
+```
+psql -h localhost -p 5433 -U postgres
+```
+The password is the password you set when running the
+docker command: 
+mysecretpassword
+
+You can also check by going to the docker app and 
+looking under inspect 
+
+To check the clients table (make sure display mode is on):
+
+```
+postgres=# \x
+TABLE CLIENTS;
+```
+Make sure there is no space at the end of the ";" 
+If you currently have no registered clients then 
+the table would be empty displaying:
+
+(0 rows)
+
+Currently we only have two tables:
+
+CLIENTS and fuel_history
+
+You can view the schema in db/migrations/001_initial_schema.up.sql 
+
+
+
 
 
 
