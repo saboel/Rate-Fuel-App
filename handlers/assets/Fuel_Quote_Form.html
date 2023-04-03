@@ -1,4 +1,4 @@
-```<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -53,14 +53,14 @@
     <hr size="3">
     <div class="container">
       <div class="w-75 mx-auto">
-        <form action="#" method="POST">
+        <form action="/fuel" method="POST">
           <label for="gallons_requested">
             <span>Gallons Requested</span>
             <input type="number" name="gallons_requested" id="gallons_requested" required>
           </label>
           <label for="delivery_address">
             <span>Delivery Address</span>
-            <input type="text" name="delivery_address" id="delivery_address" value="123 Main St, Houston, TX 77002" readonly>
+            <input type="text" name="delivery_address" id="delivery_address" required>
           </label>
           <label for="delivery_date">
             <span>Delivery Date</span>
@@ -68,11 +68,11 @@
           </label>
           <label for="suggested_price">
             <span>Suggested Price / Gallon</span>
-            <input type="number" name="suggested_price" id="suggested_price" readonly>
+            <input type="number" name="suggested_price" id="suggested_price" required>
           </label>
           <label for="total_amount_due">
             <span>Total Amount Due</span>
-            <input type="number" name="total_amount_due" id="total_amount_due" readonly>
+            <input type="number" name="total_amount_due" id="total_amount_due" required>
           </label>
           <input type="submit" name="submit" id="submit" value="Submit">
         </form>
@@ -81,4 +81,3 @@
     <script src="js/scripts.js"></script>
   </body>
 </html>
-```
